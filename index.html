@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nature Quiz</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="overlay"></div>
+
+  <main class="app" role="application" aria-label="Quiz Game">
+    <header class="app__header">
+      <h1 class="title">🌿 Nature Quiz</h1>
+      <div class="meta">
+        <div class="progress" aria-label="Progress">
+          <div class="progress__bar" id="progressBar"></div>
+        </div>
+        <div class="score" aria-live="polite">
+          Score: <span id="liveScore">0</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="card" aria-live="polite">
+      <div class="chip" id="questionCounter">Question 1/10</div>
+      <h2 class="question" id="questionText">Loading…</h2>
+
+      <div class="options" id="options" role="listbox" aria-label="Answer choices">
+        <!-- Buttons injected by JS -->
+      </div>
+
+      <div class="controls">
+        <button id="nextBtn" class="btn btn-primary" disabled>Next →</button>
+        <button id="restartBtn" class="btn btn-ghost" title="Restart the quiz">↺ Restart</button>
+      </div>
+    </section>
+
+    <footer class="app__footer">
+      <button id="shuffleBtn" class="btn btn-ghost small" title="Shuffle questions">Shuffle 🔀</button>
+      <button id="reviewBtn" class="btn btn-ghost small" title="Review your answers">Review 📝</button>
+      <span class="best">Best: <strong id="bestScore">0%</strong></span>
+    </footer>
+  </main>
+
+  <!-- Results Modal -->
+  <dialog id="resultModal" class="modal" aria-labelledby="resultTitle" aria-modal="true">
+    <div class="modal__body">
+      <h3 id="resultTitle">Your Results</h3>
+      <p id="resultSummary">You scored 0/10.</p>
+      <div class="result__bars">
+        <div class="progress big">
+          <div class="progress__bar" id="resultProgress"></div>
+        </div>
+      </div>
+      <div class="modal__actions">
+        <button class="btn btn-primary" id="playAgainBtn">Play Again</button>
+        <button class="btn" id="closeModalBtn">Close</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Review Drawer -->
+  <aside id="reviewDrawer" class="drawer" aria-label="Answer Review" aria-hidden="true">
+    <div class="drawer__head">
+      <h4>Review Answers</h4>
+      <button class="btn small" id="closeReviewBtn">Close ✕</button>
+    </div>
+    <ol id="reviewList" class="review-list"></ol>
+  </aside>
+
+  <!-- Confetti canvas -->
+  <canvas id="confettiCanvas" class="confetti"></canvas>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
